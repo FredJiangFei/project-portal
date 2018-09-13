@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(private translate: TranslateService) {
+
+  }
+
   setLanguage(lang: string) {
-    localStorage.setItem('lang', lang);
-    location.reload();
+    this.translate.use(lang);
   }
 }

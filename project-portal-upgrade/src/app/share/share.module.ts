@@ -12,7 +12,7 @@ import { PipesModule } from './pipes/pipes.module';
     FormsModule,
     RouterModule,
     MaterialModule,
-    PipesModule
+    PipesModule,
   ],
   exports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { PipesModule } from './pipes/pipes.module';
     FormsModule,
     RouterModule,
     MaterialModule,
-    PipesModule
+    PipesModule,
   ],
   declarations: []
 })

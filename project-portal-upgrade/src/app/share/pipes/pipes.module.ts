@@ -7,10 +7,10 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   exports: [
-    TranslatePipe
+    // TranslatePipe
   ],
   declarations: [
-    TranslatePipe
+    // TranslatePipe
   ]
 })
 export class PipesModule { }
