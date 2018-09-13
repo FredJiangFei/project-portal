@@ -5,12 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  menus: string [] = ['Proposal'];
-
-  constructor() { }
-
-  ngOnInit() {
+export class HeaderComponent {
+  setLanguage(lang: string) {
+    localStorage.setItem('lang', lang);
+    location.reload();
   }
-
 }

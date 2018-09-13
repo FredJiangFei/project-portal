@@ -1,3 +1,16 @@
+<mat-tab-group>
+    <mat-tab label="{{'projectResource.normal'|translate}}"> 
+     
+     </mat-tab>
+    <mat-tab label="{{'proposalResource.won'|translate}}">
+        
+    </mat-tab>
+    <mat-tab label="{{'proposalResource.lost'|translate}}">
+
+    </mat-tab>
+  </mat-tab-group>
+
+<!-- 
 <div class="row">
     <div class="my-page-left-wrap">
         <div class="row clear-margin-left clear-margin-right">
@@ -40,12 +53,12 @@
                 <table class="table tablesorter-blue project-list">
                     <thead>
                         <tr class="uppercase-text tablesorter-headerRow">
-                            <th ng-repeat="column in projectColumns" class="hand"
+                            <th  *ngFor="let column of projectColumns" class="hand"
                                 ng-class="{sortable: column.sortable !== false}"
                                 ng-show="isShowClientColumn(column)"
                                 style="text-align: left;" ng-click="sort.toggle(column)">
-                                {{column.otherName|translate}}﻿
-                                <i ng-if="column.sortable" class="glyphicon {{column.direction|orderClass}} hand"></i>
+                                {{column.otherName|translate}}
+                                <i ng-if="column.sortable" class="glyphicon {{column.direction}} hand"></i>
                             </th>
                             <th>
                                 <ul class="nav navbar-nav navbar-right text-uppercase" ng-hide="loginUser.RoleCode === roleCodes.Customer">
@@ -67,8 +80,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hand" 
-                            ng-repeat="project in projects">
+                        <tr class="hand" *ngFor="let project of projects">
                             <td class="proposal-list-number" ng-click="directProposal(project)">{{project.ProjectNumber}}</td>
                             <td class="proposal-list-name" ng-click="directProposal(project)">
                                 <div class="proposal-list-name-overtext">{{project.ProjectName}}</div>
@@ -188,14 +200,5 @@
                 </table>
             </div>
         </div>
-        <div class="row" ng-show="!isShowProjectLoading">
-            <div class="col-sm-11 paging-container" ng-if="totalCount">
-                <pagination total-items="totalCount" items-per-page="pageSize" ng-model="proposalPagingRequest.PageIndex" ng-change="pageChanged()" rotate="false"
-                            previous-text="<" next-text=">" max-size="20"></pagination>
-            </div>
-            <div class="col-sm-1 page-size-container" ng-show="totalCount">
-                <input type="number" class="form-control page-size-input" ng-model="pageRows" min="0" max="999" required ng-keypress="enterPressPageSize($event)">
-            </div>
-        </div>
     </div>
-</div>
+</div> -->

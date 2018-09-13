@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -10,14 +11,16 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    PipesModule
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    PipesModule
   ],
   declarations: []
 })

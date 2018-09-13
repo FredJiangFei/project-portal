@@ -9,14 +9,22 @@
 
     <img class="avatar" src="../../../assets/user.png" [matMenuTriggerFor]="userMenu">
 
-    <mat-menu #userMenu="matMenu">
+    <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
         <button mat-menu-item [routerLink]="['/login']">Logout</button>
+        <div>
+            <button mat-icon-button  (click)="setLanguage('en')">
+                <img src="../../../assets/flags/british.png">
+            </button>
+            <button mat-icon-button  (click)="setLanguage('sv')">
+                <img src="../../../assets/flags/sweden.png">
+            </button>
+        </div>
     </mat-menu>
 
     <button mat-icon-button [matMenuTriggerFor]="manageMenu">
         <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #manageMenu="matMenu">
+    <mat-menu #manageMenu="matMenu" [overlapTrigger]="false">
         <button mat-menu-item>Time manage</button>
         <button mat-menu-item>Material manage</button>
     </mat-menu>
