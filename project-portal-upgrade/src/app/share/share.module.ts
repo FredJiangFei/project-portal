@@ -4,6 +4,7 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from './pipes/pipes.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { PipesModule } from './pipes/pipes.module';
     RouterModule,
     MaterialModule,
     PipesModule,
+    TranslateModule
   ],
   declarations: []
 })

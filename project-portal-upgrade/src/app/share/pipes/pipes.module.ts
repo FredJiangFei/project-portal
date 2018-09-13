@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { TranslatePipe } from './translate.pipe';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -7,10 +6,10 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   exports: [
-    // TranslatePipe
+
   ],
   declarations: [
-    // TranslatePipe
+
   ]
 })
 export class PipesModule { }
