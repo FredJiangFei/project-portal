@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button [routerLink]="['/myPage']">
+        <mat-icon>home</mat-icon>
+    </button>
+    <div class="fill-remaining-place"></div>
+    <button mat-button [routerLink]="['/proposals']">Proposal</button> |
+    <button mat-button [routerLink]="['/projects']">Project</button>
+    <div class="fill-remaining-place"></div>
+
+    <img class="avatar" src="../../../assets/user.png" [matMenuTriggerFor]="userMenu">
+
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item [routerLink]="['/login']">Logout</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="manageMenu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #manageMenu="matMenu">
+        <button mat-menu-item>Time manage</button>
+        <button mat-menu-item>Material manage</button>
+    </mat-menu>
+</mat-toolbar>

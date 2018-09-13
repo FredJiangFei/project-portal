@@ -1,0 +1,201 @@
+<div class="row">
+    <div class="my-page-left-wrap">
+        <div class="row clear-margin-left clear-margin-right">
+            <div class="col-sm-8">
+                <ul class="nav nav-tabs text-uppercase">
+                    <li class="hand" (click)="changeProjectTab(1)"
+                    [ngClass]="{true:'projectSelected',false:'projectUnSelected'}[tabIndex == 1]">
+                        <h4 class="project-tab-header">{{'projectResource.normal'|translate}}</h4>
+                    </li>
+                    <li class="hand" (click)="changeProjectTab(2)"
+                      [ngClass]="{true:'projectSelected',false:'projectUnSelected'}[tabIndex == 2]">
+                        <h4 class="project-tab-header">{{'proposalResource.won'|translate}}</h4>
+                    </li>
+                    <li class="hand" (click)="changeProjectTab(3)"
+                    [ngClass]="{true:'projectSelected',false:'projectUnSelected'}[tabIndex == 3]">
+                        <h4 class="project-tab-header">{{'proposalResource.lost'|translate}}</h4>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-1 text-align-right clear-padding-right">
+                <span class="input-group-btn" ng-click="searchKeyword()">
+                    <span class="magnifying-glass">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                </span>
+            </div>
+            <div class="col-sm-3 clear-padding-right clear-padding-left">
+                <div class="clearable-input">
+                    <input type="text" class="form-control" placeholder="{{'proposalResource.proposal'|translate}}" ng-model="keyword"
+                           ng-keypress="enterPress($event)" capitalise-name />
+                    <span data-clear-input ng-show="keyword != ''" ng-click="clearKeyWord()">&times;</span>
+                </div>
+            </div>
+        </div>
+
+        <span ng-if="isShowProjectLoading" class="project-list-loading" spinner is-show="isShowProjectLoading"></span>
+
+        <div class="tab-content" ng-show="!isShowProjectLoading">
+            <div class="table-wrap">
+                <table class="table tablesorter-blue project-list">
+                    <thead>
+                        <tr class="uppercase-text tablesorter-headerRow">
+                            <th ng-repeat="column in projectColumns" class="hand"
+                                ng-class="{sortable: column.sortable !== false}"
+                                ng-show="isShowClientColumn(column)"
+                                style="text-align: left;" ng-click="sort.toggle(column)">
+                                {{column.otherName|translate}}﻿
+                                <i ng-if="column.sortable" class="glyphicon {{column.direction|orderClass}} hand"></i>
+                            </th>
+                            <th>
+                                <ul class="nav navbar-nav navbar-right text-uppercase" ng-hide="loginUser.RoleCode === roleCodes.Customer">
+                                    <li class="header-ioc first-header-ioc dropdown" dropdown>
+                                        <a class="dropdown-toggle hand clear-padding-top"  dropdown-toggle ng-disabled="loginUser.RoleCode == roleCodes.Craftsman || loginUser.RoleCode === roleCodes.SubContractor">
+                                            <span class="glyphicon glyphicon-plus add-register-button"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li ng-hide="loginUser.RoleCode === roleCodes.Epl || loginUser.RoleCode === roleCodes.TeamLeader">
+                                                <a href="#/addProposal">{{"proposalResource.createProposal"|translate}}</a>
+                                            </li>
+                                            <li ng-hide="loginUser.RoleCode === roleCodes.Epl || loginUser.RoleCode === roleCodes.TeamLeader">
+                                                <a href="#/importProposal">{{"proposalResource.importCalculation"|translate}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hand" 
+                            ng-repeat="project in projects">
+                            <td class="proposal-list-number" ng-click="directProposal(project)">{{project.ProjectNumber}}</td>
+                            <td class="proposal-list-name" ng-click="directProposal(project)">
+                                <div class="proposal-list-name-overtext">{{project.ProjectName}}</div>
+                            </td>
+                            <td class="proposal-list-address" ng-click="directProposal(project)">
+                                <div class="proposal-list-address-overtext">{{project.Address}}</div>
+                            </td>
+                            <td class="proposal-list-customer" ng-click="directProposal(project)">
+                                <div class="proposal-list-customer-overtext">{{project.CustomerName}}</div>
+                            </td>
+                            <td class="proposal-list-manager" ng-click="directProposal(project)">
+                                <div class="proposal-list-manager-overtext">{{project.ProjectManager}}</div>
+                            </td>
+                            <td ng-show="loginUser.IsSuperadmin" ng-click="directProposal(project)">{{project.Client}}</td>
+                            <td class="proposal-list-status">
+                                <div class="btn-group text-uppercase">
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.Received">
+                                        {{"proposalResource.received"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.Started">
+                                        {{"proposalResource.started"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.Sent">
+                                        {{"proposalResource.sent"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.Won">
+                                        {{"proposalResource.won"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.WonToProject">
+                                        {{"proposalResource.wonToProject"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <span class="dropdown-toggle list-status" data-toggle="dropdown" aria-haspopup="true"
+                                          aria-expanded="false" 
+                                          ng-show="project.StatusId == proposalStatusIdEnum.Lost">
+                                        {{"proposalResource.lost"|translate}}
+                                        &nbsp;<span class="caret" ></span>
+                                    </span>
+                                    <ul class="dropdown-menu edit-project-change-status-menu">
+                                        <li>
+                                            <a ng-click="receiveProposal(project)">
+                                                {{"proposalResource.received"|translate}}
+                                                <span class="glyphicon glyphicon-ok float-right" ng-show="project.StatusId == proposalStatusIdEnum.Received"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="startedProposal(project)">
+                                                {{"proposalResource.started"|translate}}
+                                                <span class="glyphicon glyphicon-ok float-right" ng-show="project.StatusId  == proposalStatusIdEnum.Started"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="sentProposal(project)">
+                                                {{"proposalResource.sent"|translate}}
+                                                <span class="glyphicon glyphicon-ok float-right" ng-show="project.StatusId == proposalStatusIdEnum.Sent"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="wonProposal(project)">
+                                                {{"proposalResource.won"|translate}}
+                                                <span class="glyphicon glyphicon-ok float-right" ng-show="project.StatusId == proposalStatusIdEnum.Won"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="lostProposal(project)">
+                                                {{"proposalResource.lost"|translate}}
+                                                <span class="glyphicon glyphicon-ok float-right" ng-show="project.StatusId == proposalStatusIdEnum.Lost"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td  ng-click="directProposal(project)">
+                                {{project.Price?project.Price:0}}
+                            </td>
+                            <td class=""></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="proposal-list-number"></td>
+                            <td class="proposal-list-name">
+                                <div class="proposal-list-name-overtext"></div>
+                            </td>
+                            <td class="proposal-list-address">
+                                <div class="proposal-list-address-overtext"></div>
+                            </td>
+                            <td class="proposal-list-customer">
+                                <div class="proposal-list-customer-overtext"></div>
+                            </td>
+                            <td class="proposal-list-manager">
+                                <div class="proposal-list-manager-overtext"></div>
+                            </td>
+                            <td ng-show="loginUser.IsSuperadmin"></td>
+                            
+                            <td colspan="2" class="proposal-list-status" 
+                            style="text-align: right;color: #000 !important; font-weight: bold;">
+                                Total: {{totalPrice}}
+                            </td>
+                            <td class=""></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row" ng-show="!isShowProjectLoading">
+            <div class="col-sm-11 paging-container" ng-if="totalCount">
+                <pagination total-items="totalCount" items-per-page="pageSize" ng-model="proposalPagingRequest.PageIndex" ng-change="pageChanged()" rotate="false"
+                            previous-text="<" next-text=">" max-size="20"></pagination>
+            </div>
+            <div class="col-sm-1 page-size-container" ng-show="totalCount">
+                <input type="number" class="form-control page-size-input" ng-model="pageRows" min="0" max="999" required ng-keypress="enterPressPageSize($event)">
+            </div>
+        </div>
+    </div>
+</div>

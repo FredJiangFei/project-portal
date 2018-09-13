@@ -1,0 +1,76 @@
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatIconModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatInputModule,
+  MatListModule,
+  MatSlideToggleModule,
+  MatGridListModule,
+  MatDialogModule,
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatPaginatorModule,
+  MatTabsModule,
+  MatBadgeModule,
+  MatChipsModule
+} from '@angular/material';
+
+@NgModule({
+  imports: [
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    MatBadgeModule,
+    MatChipsModule
+  ],
+  exports: [
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    MatBadgeModule,
+    MatChipsModule
+  ],
+  declarations: []
+})
+export class MaterialModule { }
