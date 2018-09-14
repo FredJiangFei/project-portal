@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { PipesModule } from './pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { LaddaModule } from 'angular2-ladda';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerDirective } from './directives/spinner.directive';
 
 @NgModule({
   imports: [
@@ -26,8 +28,9 @@ import { LaddaModule } from 'angular2-ladda';
     MaterialModule,
     PipesModule,
     TranslateModule,
-    LaddaModule
+    LaddaModule,
+    SpinnerComponent
   ],
-  declarations: []
+  declarations: [SpinnerComponent, SpinnerDirective]
 })
 export class ShareModule { }

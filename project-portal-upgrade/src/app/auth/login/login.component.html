@@ -10,7 +10,9 @@
     </mat-card-content>
 
     <mat-card-actions>
-        <button type="submit" mat-flat-button class="full-width" [ladda]="logining">Login</button>
+        <button type="submit" mat-flat-button class="full-width">
+          Login  <app-spinner [isLoading]="logining"></app-spinner>
+        </button>
     </mat-card-actions>
   </mat-card>
 </form>
