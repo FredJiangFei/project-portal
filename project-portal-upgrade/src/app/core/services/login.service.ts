@@ -11,8 +11,8 @@ export class LoginService {
 
     }
 
-    getDigest(): Observable<any> {
-        return this.http.get<any>(environment.baseUrl + 'api/authenticate', {observe: 'response'})
+    getDigest() {
+        return this.http.get(environment.baseUrl + 'api/authenticate', {observe: 'response'})
         .pipe(
             map(_response => _response.headers.get('WWW-Authenticate'))
         );
