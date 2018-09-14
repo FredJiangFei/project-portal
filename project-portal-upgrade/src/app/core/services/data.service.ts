@@ -10,18 +10,18 @@ export class DataService<T> {
   }
 
   getAll() {
-    return this.http.get<T[]>(`${environment.baseUrl}/${this.url}`);
+    return this.http.get<T[]>(`${environment.baseUrl}${this.url}`);
   }
 
   add(post) {
-    return this.http.post(`${environment.baseUrl}/${this.url}`, post);
+    return this.http.post(`${environment.baseUrl}${this.url}`, post);
   }
 
   update(post) {
-    return this.http.patch(`${environment.baseUrl}/${this.url}/${post.id}`, post);
+    return this.http.patch(`${environment.baseUrl}${this.url}/${post.id}`, post);
   }
 
   delete(id) {
-    return this.http.delete(`${environment.baseUrl}/${this.url}/${id}`);
+    return this.http.delete(`${environment.baseUrl}${this.url}/${id}`);
   }
 }

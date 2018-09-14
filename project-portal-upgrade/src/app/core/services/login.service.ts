@@ -26,7 +26,7 @@ export class LoginService {
         const request = {
             UserName: username,
             ClientId: clientId,
-            // Password: hash.SHA256(password)
+            Password: password, // hash.SHA256(password)
         };
         const config = {
             // headers: { 'Authorization': hash.GetAuthResponse(userHash, nonce, nc, cnonce, qop, 'GET', clientId, username, realm, url) },

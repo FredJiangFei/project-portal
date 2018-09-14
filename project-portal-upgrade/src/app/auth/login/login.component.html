@@ -1,11 +1,12 @@
-<form #form="ngForm" (ngSubmit)="login()" class="login-container">
+<form #form="ngForm" (ngSubmit)="login(form.value)" class="login-container">
   <mat-card>
     <mat-card-header>
       
     </mat-card-header>
+    
     <mat-card-content>
-        <input matInput  class="form-control">
-        <input type="password" matInput class="form-control">
+        <input type="text" matInput class="form-control" name="username" [(ngModel)]="username">
+        <input type="password" matInput class="form-control" name="password" [(ngModel)]="password">
     </mat-card-content>
 
     <mat-card-actions>
