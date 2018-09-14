@@ -13,13 +13,13 @@ export class LoginComponent {
    private loginService: LoginService) { }
 
   login(value: any) {
-    this.router.navigate(['/myPage']);
-    // this.loginService.getDigest()
-    // .subscribe(result =>
-    //   this.loginService.login(result, value.username,  value.password, 1)
-    //   .subscribe(user => {
-    //     console.log(user);
-    //   })
-    // );
+    this.loginService.getDigest()
+    .subscribe(auth =>
+      this.loginService.login(auth, value.username,  value.password, 1)
+      .subscribe(user => {
+        this.router.navigate(['/myPage']);
+        console.log(user);
+      })
+     );
   }
 }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as hash from '../../share/tools/hash';
 
 @Injectable()
 export class LoginService {
@@ -8,8 +11,11 @@ export class LoginService {
 
     }
 
-    getDigest() {
-        return this.http.get(environment.baseUrl + 'api/authenticate');
+    getDigest(): Observable<any> {
+        return this.http.get<any>(environment.baseUrl + 'api/authenticate', {observe: 'response'})
+        .pipe(
+            map(_response => _response.headers.get('WWW-Authenticate'))
+        );
     }
 
     login (digest, username, password, clientId) {
@@ -20,16 +26,15 @@ export class LoginService {
         const cnonce = 'bd5fd9b093dccaa1';
         const nc = '00000001';
         const url = 'api/login';
-
-        // const userHash = hash.SHA256(username + ':' + realm + ':' + hash.SHA256(password));
+        const userHash = hash.SHA256(username + ':' + realm + ':' + hash.SHA256(password));
 
         const request = {
             UserName: username,
             ClientId: clientId,
-            Password: password, // hash.SHA256(password)
+            Password: hash.SHA256(password)
         };
         const config = {
-            // headers: { 'Authorization': hash.GetAuthResponse(userHash, nonce, nc, cnonce, qop, 'GET', clientId, username, realm, url) },
+            headers: { 'Authorization': hash.GetAuthResponse(userHash, nonce, nc, cnonce, qop, 'GET', clientId, username, realm, url) },
             params: request
         };
         return this.http.get(environment.baseUrl + 'api/login', config);
