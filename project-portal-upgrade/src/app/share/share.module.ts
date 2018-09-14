@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from './pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
   imports: [
@@ -14,6 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     MaterialModule,
     PipesModule,
+    LaddaModule.forRoot({
+    }),
   ],
   exports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     MaterialModule,
     PipesModule,
-    TranslateModule
+    TranslateModule,
+    LaddaModule
   ],
   declarations: []
 })
