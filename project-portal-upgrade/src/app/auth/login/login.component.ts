@@ -15,12 +15,14 @@ export class LoginComponent {
 
   login(value: any) {
     this.logining = true;
-    this.loginService.getDigest()
-    .pipe(
-      flatMap(auth => this.loginService.login(auth, value.username,  value.password, 1)),
-      finalize(() => this.logining = false)
-    ).subscribe(user => {
-      this.router.navigate(['/myPage']);
-    });
+    setTimeout(() => {
+      this.loginService.getDigest()
+      .pipe(
+        flatMap(auth => this.loginService.login(auth, value.username,  value.password, 1)),
+        finalize(() => this.logining = false)
+      ).subscribe(user => {
+        this.router.navigate(['/myPage']);
+      });
+    }, 2000);
   }
 }

@@ -29,7 +29,8 @@ import { SpinnerDirective } from './directives/spinner.directive';
     PipesModule,
     TranslateModule,
     LaddaModule,
-    SpinnerComponent
+    SpinnerComponent,
+    SpinnerDirective
   ],
   declarations: [SpinnerComponent, SpinnerDirective]
 })
