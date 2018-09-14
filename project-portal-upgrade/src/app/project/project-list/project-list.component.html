@@ -1,3 +1,25 @@
-<p>
-  project-list works!
-</p>
+<mat-tab-group>
+  <mat-tab label="{{'projectResource.normal'|translate}}"> 
+
+      <table class="table">
+        <header>
+          <tr>
+              <th>Project Name</th>
+              <th>Address</th>
+          </tr>
+        </header>
+        <body>
+          <tr *ngFor="let project of projects">
+             <td>{{project.ProjectName}}</td> 
+             <td>{{project.Address}}</td> 
+          </tr>
+        </body>
+      </table>
+   </mat-tab>
+  <mat-tab label="{{'projectResource.done'|translate}}">
+      
+  </mat-tab>
+  <mat-tab label="{{'projectResource.completed'|translate}}">
+
+  </mat-tab>
+</mat-tab-group>

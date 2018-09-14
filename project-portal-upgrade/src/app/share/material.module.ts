@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CdkTableModule} from '@angular/cdk/table';
 import {
   MatIconModule,
   MatButtonModule,
@@ -20,7 +21,7 @@ import {
   MatPaginatorModule,
   MatTabsModule,
   MatBadgeModule,
-  MatChipsModule
+  MatChipsModule,
 } from '@angular/material';
 
 @NgModule({
@@ -45,7 +46,8 @@ import {
     MatPaginatorModule,
     MatTabsModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    CdkTableModule
   ],
   exports: [
     MatIconModule,
@@ -68,7 +70,8 @@ import {
     MatPaginatorModule,
     MatTabsModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    CdkTableModule
   ],
   declarations: []
 })

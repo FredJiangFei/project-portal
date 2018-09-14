@@ -26,5 +26,4 @@ export class ProposalListComponent implements OnInit {
   changeProjectTab(index: number) {
     this.tabIndex = index;
   }
-
 }
