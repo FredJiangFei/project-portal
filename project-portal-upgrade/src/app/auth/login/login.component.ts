@@ -20,8 +20,11 @@ export class LoginComponent {
       .pipe(
         flatMap(auth => this.loginService.login(auth, value.username,  value.password, 1)),
         finalize(() => this.logining = false)
-      ).subscribe(user => {
-        this.router.navigate(['/myPage']);
+      ).subscribe(_ => {
+        const loginUser = this.loginService.loginUser();
+        if (!!loginUser) {
+          this.router.navigate(['/myPage']);
+        }
       });
     }, 2000);
   }

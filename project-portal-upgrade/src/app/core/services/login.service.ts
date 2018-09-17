@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import * as hash from '../../share/tools/hash';
 
 @Injectable()
@@ -33,10 +33,44 @@ export class LoginService {
             ClientId: clientId,
             Password: hash.SHA256(password)
         };
+        const auth = hash.GetAuthResponse(userHash, nonce, nc, cnonce, qop, 'GET', clientId, username, realm, url);
         const config = {
-            headers: { 'Authorization': hash.GetAuthResponse(userHash, nonce, nc, cnonce, qop, 'GET', clientId, username, realm, url) },
+            headers: { 'Authorization': auth },
             params: request
         };
-        return this.http.get(environment.baseUrl + 'api/login', config);
+        return this.http.get(environment.baseUrl + 'api/login', config)
+        .pipe(
+            tap(x => {
+                localStorage.setItem('loginUser', JSON.stringify(x));
+                const digestData = {
+                    userHash: userHash,
+                    nonce: nonce,
+                    nc: nc,
+                    cnonce: cnonce,
+                    qop: qop,
+                    clientId: clientId,
+                    userName: username,
+                    realm: realm
+                };
+                localStorage.setItem('digestData', JSON.stringify(digestData));
+              }
+            )
+        );
+    }
+
+    loginUser() {
+        return JSON.parse(localStorage.getItem('loginUser'));
+    }
+
+    digestData() {
+        return JSON.parse(localStorage.getItem('digestData'));
+    }
+
+    setDigestData(digestData) {
+        localStorage.setItem('digestData', JSON.stringify(digestData));
+    }
+
+    clearUser() {
+        return localStorage.removeItem('loginUser');
     }
 }
