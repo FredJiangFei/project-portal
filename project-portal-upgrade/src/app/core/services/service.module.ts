@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ProposalService } from './proposal.service';
 import { ProjectService } from './project.service';
 import { LoginService } from './login.service';
+import { InterceptorProvider } from './http.interceptor';
 
 @NgModule({
     declarations: [],
     imports: [ CommonModule ],
     exports: [],
-    providers: [
+    providers:
+    [
         ProjectService,
         ProposalService,
-        LoginService],
+        LoginService,
+        InterceptorProvider
+    ],
 })
 export class ServiceModule {
 }
