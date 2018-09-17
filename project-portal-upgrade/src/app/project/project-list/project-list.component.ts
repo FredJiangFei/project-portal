@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../core/services/project.service';
 import { Project } from '../../core/models/project';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-list',
@@ -10,9 +11,19 @@ import { Project } from '../../core/models/project';
 export class ProjectListComponent implements OnInit {
   displayedColumns: string[] = ['projectName', 'address'];
   projects: Project[];
+  loadingData: boolean;
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getAll().subscribe(data => this.projects = data.ProjectViews);
+    this.loadProjects();
+  }
+
+  loadProjects() {
+    this.loadingData = true;
+    this.projectService.getAll()
+    .pipe(
+      finalize(() => this.loadingData = false)
+    )
+    .subscribe(data => this.projects = data.ProjectViews);
   }
 }

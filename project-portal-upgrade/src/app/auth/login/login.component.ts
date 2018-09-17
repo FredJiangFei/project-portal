@@ -25,7 +25,7 @@ export class LoginComponent {
         const loginUser = this.loginService.loginUser();
         if (!!loginUser) {
           const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/']);
+          this.router.navigate([returnUrl || '/myPage']);
         }
       });
     }, 2000);

@@ -1,7 +1,6 @@
 <mat-tab-group>
   <mat-tab label="{{'projectResource.normal'|translate}}"> 
-
-      <table class="table">
+      <table class="table" [appSpinner]="loadingData">
         <header>
           <tr>
               <th>Project Name</th>
