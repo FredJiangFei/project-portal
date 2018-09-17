@@ -5,7 +5,6 @@ import { LoginService } from '../../core/services/login.service';
 
 @Injectable()
 export class AuthGurd implements CanActivate {
-
     constructor(
         private loginService: LoginService,
         private router: Router) {

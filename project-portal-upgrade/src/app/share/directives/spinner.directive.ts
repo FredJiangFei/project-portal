@@ -9,8 +9,7 @@ export class SpinnerDirective implements OnChanges {
   spinner: Spinner;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2) {
+    private elementRef: ElementRef) {
       const isButton = elementRef.nativeElement.localName === 'button';
       const spinnerOptions = isButton ? { color: '#fff' } : {};
       this. spinner =  new Spinner(spinnerOptions);
@@ -18,15 +17,10 @@ export class SpinnerDirective implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.appSpinner.currentValue) {
-      const loadSpinner = document.createElement('span');
-      this.spinner.spin(loadSpinner);
-      this.renderer.appendChild(this.elementRef.nativeElement, loadSpinner);
-
-      this.elementRef.nativeElement.disabled = true;
+      this.spinner.spin(this.elementRef.nativeElement);
     } else {
       this.spinner.stop();
-
-      this.elementRef.nativeElement.disabled = false;
     }
+    this.elementRef.nativeElement.disabled = changes.appSpinner.currentValue;
   }
 }

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { PipesModule } from './pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { LaddaModule } from 'angular2-ladda';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerDirective } from './directives/spinner.directive';
 import { AuthGurd } from './guards/auth.guard';
 
@@ -30,10 +29,9 @@ import { AuthGurd } from './guards/auth.guard';
     PipesModule,
     TranslateModule,
     LaddaModule,
-    SpinnerComponent,
     SpinnerDirective
   ],
-  declarations: [SpinnerComponent, SpinnerDirective],
+  declarations: [SpinnerDirective],
   providers: [AuthGurd]
 })
 export class ShareModule { }
