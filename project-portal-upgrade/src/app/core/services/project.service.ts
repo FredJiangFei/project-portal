@@ -12,8 +12,7 @@ export class ProjectService extends DataService<Project> {
     super('projects', http);
    }
 
-   getAll() {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get<any>(environment.baseUrl + 'api/projects-paging/?IsAsc=true&Keyword=&OrderByPropertyName=ProjectNumber&PageIndex=1&PageSize=10&TabIndex=1');
+   getAllPaging(command: any) {
+    return this.http.get<any>(environment.baseUrl + 'api/projects-paging/', { params: command });
   }
 }

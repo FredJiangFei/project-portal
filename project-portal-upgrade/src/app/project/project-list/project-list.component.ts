@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../core/services/project.service';
 import { Project } from '../../core/models/project';
 import { finalize } from 'rxjs/operators';
+import { PagingRequest } from '../../core/services/commands/paging.request';
 
 @Component({
   selector: 'app-project-list',
@@ -12,6 +13,8 @@ export class ProjectListComponent implements OnInit {
   displayedColumns: string[] = ['projectName', 'address'];
   projects: Project[];
   loadingData: boolean;
+  command = new PagingRequest();
+
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
@@ -20,7 +23,10 @@ export class ProjectListComponent implements OnInit {
 
   loadProjects() {
     this.loadingData = true;
-    this.projectService.getAll()
+    this.command.IsAsc =  true;
+    this.command.OrderByPropertyName = 'ProjectNumber';
+    this.command.TabIndex = 1;
+    this.projectService.getAllPaging(this.command)
     .pipe(
       finalize(() => this.loadingData = false)
     )
