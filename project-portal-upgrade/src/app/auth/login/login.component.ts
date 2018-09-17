@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../core/services/login.service';
 import { flatMap, finalize } from 'rxjs/operators';
 
@@ -11,7 +11,8 @@ import { flatMap, finalize } from 'rxjs/operators';
 export class LoginComponent {
   logining: boolean;
   constructor(private router: Router,
-   private loginService: LoginService) { }
+   private loginService: LoginService,
+   private activedRoute: ActivatedRoute) { }
 
   login(value: any) {
     this.logining = true;
@@ -23,7 +24,8 @@ export class LoginComponent {
       ).subscribe(_ => {
         const loginUser = this.loginService.loginUser();
         if (!!loginUser) {
-          this.router.navigate(['/myPage']);
+          const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
+          this.router.navigate([returnUrl || '/']);
         }
       });
     }, 2000);

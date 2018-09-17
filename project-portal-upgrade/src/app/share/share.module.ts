@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LaddaModule } from 'angular2-ladda';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerDirective } from './directives/spinner.directive';
+import { AuthGurd } from './guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { SpinnerDirective } from './directives/spinner.directive';
     SpinnerComponent,
     SpinnerDirective
   ],
-  declarations: [SpinnerComponent, SpinnerDirective]
+  declarations: [SpinnerComponent, SpinnerDirective],
+  providers: [AuthGurd]
 })
 export class ShareModule { }

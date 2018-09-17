@@ -7,22 +7,21 @@ import * as hash from '../../share/tools/hash';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        const digestData = JSON.parse(localStorage.getItem('digestData'));
-        digestData.nc = (Number(digestData.nc) + 1).toString();
-        localStorage.setItem('digestData', JSON.stringify(digestData));
-
-        const responseContentHeader = hash.GetAuthResponse(digestData.userHash,
-                                                          digestData.nonce,
-                                                          digestData.nc,
-                                                          digestData.cnonce,
-                                                          digestData.qop,
-                                                          req.method,
-                                                          digestData.clientId,
-                                                          digestData.userName,
-                                                          digestData.realm);
-        req.headers.append('Authorization', responseContentHeader);
-        req = req.clone({ headers: req.headers.set('Authorization', responseContentHeader) });
+        if (!req.url.includes('/api/login')) {
+            const digestData = JSON.parse(localStorage.getItem('digestData'));
+            digestData.nc = (Number(digestData.nc) + 1).toString();
+            localStorage.setItem('digestData', JSON.stringify(digestData));
+            const responseContentHeader = hash.GetAuthResponse(digestData.userHash,
+                                                              digestData.nonce,
+                                                              digestData.nc,
+                                                              digestData.cnonce,
+                                                              digestData.qop,
+                                                              req.method,
+                                                              digestData.clientId,
+                                                              digestData.userName,
+                                                              digestData.realm);
+            req = req.clone({ headers: req.headers.set('Authorization', responseContentHeader) });
+        }
 
         return next.handle(req).pipe(
             catchError(error => {

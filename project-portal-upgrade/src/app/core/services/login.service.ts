@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import * as hash from '../../share/tools/hash';
 
@@ -58,16 +57,17 @@ export class LoginService {
         );
     }
 
+    logout() {
+        localStorage.removeItem('loginUser');
+    }
+
     loginUser() {
         return JSON.parse(localStorage.getItem('loginUser'));
     }
 
-    digestData() {
-        return JSON.parse(localStorage.getItem('digestData'));
-    }
-
-    setDigestData(digestData) {
-        localStorage.setItem('digestData', JSON.stringify(digestData));
+    loggedIn() {
+        const loginUser = localStorage.getItem('loginUser');
+        return !!loginUser;
     }
 
     clearUser() {
