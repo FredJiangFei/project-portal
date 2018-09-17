@@ -11,7 +11,7 @@ export class LoginService {
     }
 
     getDigest() {
-        return this.http.get(environment.baseUrl + 'api/authenticate', {observe: 'response'})
+        return this.http.get(environment.baseUrl + 'authenticate', {observe: 'response'})
         .pipe(
             map(_response => _response.headers.get('WWW-Authenticate'))
         );
@@ -37,7 +37,7 @@ export class LoginService {
             headers: { 'Authorization': auth },
             params: request
         };
-        return this.http.get(environment.baseUrl + 'api/login', config)
+        return this.http.get(environment.baseUrl + 'login', config)
         .pipe(
             tap(x => {
                 localStorage.setItem('loginUser', JSON.stringify(x));

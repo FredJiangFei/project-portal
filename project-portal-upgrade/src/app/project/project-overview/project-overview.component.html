@@ -1,3 +1,8 @@
-<p>
-  project-overview works!
-</p>
+<mat-tab-group> 
+    <mat-tab label="{{'projectResource.overview'|translate}}"> 
+        {{project | json}}
+    </mat-tab>
+    <mat-tab label="{{'projectResource.deviations'|translate}}"> 
+       
+    </mat-tab>
+  </mat-tab-group>

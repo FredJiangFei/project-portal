@@ -13,6 +13,10 @@ export class DataService<T> {
     return this.http.get<T[]>(`${environment.baseUrl}${this.url}`);
   }
 
+  get(id: number) {
+    return this.http.get<T>(`${environment.baseUrl}${this.url}/${id}`);
+  }
+
   add(post) {
     return this.http.post(`${environment.baseUrl}${this.url}`, post);
   }

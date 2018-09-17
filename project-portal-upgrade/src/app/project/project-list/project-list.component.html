@@ -7,8 +7,10 @@
               <th>Address</th>
               <th>City</th>
           </tr>
-          <tr *ngFor="let project of projects">
-             <td>{{project.ProjectNumber}}</td> 
+          <tr *ngFor="let project of projects"  [routerLink]="['/projects', project.ProjectId]">
+             <td>
+                {{project.ProjectNumber}}
+             </td> 
              <td>{{project.ProjectName}}</td> 
              <td>{{project.Address}}</td> 
              <td>{{project.City}}</td> 

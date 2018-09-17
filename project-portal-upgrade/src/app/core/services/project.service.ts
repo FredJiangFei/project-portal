@@ -13,6 +13,6 @@ export class ProjectService extends DataService<Project> {
    }
 
    getAllPaging(command: any) {
-    return this.http.get<any>(environment.baseUrl + 'api/projects-paging/', { params: command });
+    return this.http.get<any>(environment.baseUrl + 'projects-paging/', { params: command });
   }
 }

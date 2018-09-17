@@ -4,8 +4,19 @@
     </button>
     <div class="fill-remaining-place"></div>
     <button mat-button [routerLink]="['/proposals']">Proposal</button> |
-    <button mat-button [routerLink]="['/projects']">Project</button>
-    <div class="fill-remaining-place"></div>
+    <button mat-button [routerLink]="['/projects']">Project</button> |
+    <button mat-button [routerLink]="['/projects']">Service Order</button> |
+    <button mat-button [routerLink]="['/projects']">Register</button> |
+    <button mat-button [routerLink]="['/projects']">Report</button> | 
+
+    <button mat-mini-fab>
+        <mat-icon>add</mat-icon>
+    </button>
+    
+
+    <button mat-icon-button>
+        <mat-icon>mail_outline</mat-icon>
+    </button>
 
     <img class="avatar" src="../../../assets/user.png" [matMenuTriggerFor]="userMenu">
 
