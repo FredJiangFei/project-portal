@@ -1,18 +1,18 @@
 <mat-tab-group>
   <mat-tab label="{{'projectResource.normal'|translate}}"> 
       <table class="table" [appSpinner]="loadingData">
-        <header>
           <tr>
+              <th>Project Number</th>
               <th>Project Name</th>
               <th>Address</th>
+              <th>City</th>
           </tr>
-        </header>
-        <body>
           <tr *ngFor="let project of projects">
+             <td>{{project.ProjectNumber}}</td> 
              <td>{{project.ProjectName}}</td> 
              <td>{{project.Address}}</td> 
+             <td>{{project.City}}</td> 
           </tr>
-        </body>
       </table>
    </mat-tab>
   <mat-tab label="{{'projectResource.done'|translate}}">

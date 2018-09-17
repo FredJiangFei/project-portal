@@ -10,7 +10,6 @@ import { PagingRequest } from '../../core/services/commands/paging.request';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-  displayedColumns: string[] = ['projectName', 'address'];
   projects: Project[];
   loadingData: boolean;
   command = new PagingRequest();
