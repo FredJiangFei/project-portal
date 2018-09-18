@@ -1,11 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { ShareModule } from '../share/share.module';
-import { ServiceModule } from './services/service.module';
 
 @NgModule({
   imports: [
-    ShareModule,
-    ServiceModule
+
   ]
 })
 export class CoreModule {

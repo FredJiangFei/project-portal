@@ -4,7 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Project } from '../models/project';
 import { environment } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProjectService extends DataService<Project> {
   constructor(public http: HttpClient) {
     super('projects', http);

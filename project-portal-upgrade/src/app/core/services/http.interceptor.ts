@@ -52,9 +52,3 @@ export class Interceptor implements HttpInterceptor {
         );
     }
 }
-
-export const InterceptorProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: Interceptor,
-    multi: true
-};

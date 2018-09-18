@@ -4,7 +4,9 @@ import { environment } from '../../../environments/environment';
 import { map, tap } from 'rxjs/operators';
 import * as hash from '../../share/tools/hash';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class LoginService {
     constructor(public http: HttpClient) {
 
