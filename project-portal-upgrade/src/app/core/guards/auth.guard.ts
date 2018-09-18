@@ -3,7 +3,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { LoginService } from '../../core/services/login.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthGurd implements CanActivate {
     constructor(
         private loginService: LoginService,

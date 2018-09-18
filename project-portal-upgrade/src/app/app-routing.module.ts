@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MyPageComponent } from './my-page/my-page.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGurd } from './share/guards/auth.guard';
+import { AuthGurd } from './core/guards/auth.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'projects', pathMatch: 'full' },
     {
         path: '',
         component: HomeComponent,

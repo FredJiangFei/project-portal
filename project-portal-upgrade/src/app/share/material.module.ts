@@ -25,30 +25,6 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatInputModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatChipsModule,
-    CdkTableModule
-  ],
   exports: [
     MatIconModule,
     MatButtonModule,
@@ -72,7 +48,6 @@ import {
     MatBadgeModule,
     MatChipsModule,
     CdkTableModule
-  ],
-  declarations: []
+  ]
 })
 export class MaterialModule { }

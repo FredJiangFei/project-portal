@@ -4,6 +4,7 @@ import { ProposalService } from './proposal.service';
 import { ProjectService } from './project.service';
 import { LoginService } from './login.service';
 import { InterceptorProvider } from './http.interceptor';
+import { DataService } from './data.service';
 
 @NgModule({
     declarations: [],
@@ -11,6 +12,7 @@ import { InterceptorProvider } from './http.interceptor';
     exports: [],
     providers:
     [
+        DataService,
         ProjectService,
         ProposalService,
         LoginService,

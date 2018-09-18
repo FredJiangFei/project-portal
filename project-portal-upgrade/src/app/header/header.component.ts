@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../core/services/login.service';
 
 @Component({
   selector: 'app-header',
